@@ -26,13 +26,13 @@ for medical staff, leading to one of the most significant public health interven
 # Load data
 @st.cache_data
 def load_data():
-    monthly_data = pd.read_csv('../monthly_deaths.csv')
+    monthly_data = pd.read_csv('monthly_deaths.csv')
     monthly_data['date'] = pd.to_datetime(monthly_data['date'])
     monthly_data = monthly_data.set_index('date').asfreq('MS')
     monthly_data['proportion_deaths'] = monthly_data['deaths'] / monthly_data['births']
     monthly_data['mortality_rate'] = monthly_data['proportion_deaths'] * 100
     
-    clinic_data = pd.read_csv('../yearly_deaths_by_clinic.csv')
+    clinic_data = pd.read_csv('yearly_deaths_by_clinic.csv')
     clinic_data['mortality_rate'] = (clinic_data['deaths'] / clinic_data['births']) * 100
     
     return monthly_data, clinic_data
